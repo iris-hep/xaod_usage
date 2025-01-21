@@ -3,6 +3,7 @@ from typing import List, Union
 
 import awkward as ak
 import numpy as np
+import uproot
 
 from servicex import deliver, dataset as servicex_dataset
 
@@ -84,6 +85,13 @@ def deliver_files(query, s: sample):
     assert files is not None, "No files returned from deliver! Internal error"
     return files
 
+def flat_array_from_files(files, branch_name):
+    data = []
+    for file_path in files:
+        file = uproot.open(file_path)
+        array = file['atlas_xaod_tree;1'][branch_name].arrays(library="ak")[branch_name]
+        data.extend(ak.flatten(array))
+    return data
 
 def match_eta_phi(jets, jets_to_match) -> ak.Record:
     """Match `jets_to_match` to the `jets` given. There will always be
