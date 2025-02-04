@@ -1,5 +1,9 @@
 # Using the ATLAS xAOD Typed Backend
 
+```{warning}
+This documentation book is currently in the proccess of being updated to r22 and ServiceX 3. By using a combination of the updated examples and the old examples an understanding of how to complete the examples using the latest version can be made. For up to date examples look to "The Jet Collection" page.
+```
+
 Come here to learn:
 
 - How to setup your environment to access xAOD data in ATLAS (R21)
