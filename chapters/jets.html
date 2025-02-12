@@ -1,468 +1,498 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>The Jet Collection &#8212; Using the ATLAS xAOD ServiceX Backend</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
-
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/jets';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Calibration" href="calibration.html" />
     <link rel="prev" title="Data Samples" href="data.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Using the ATLAS xAOD ServiceX Backend</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Using the ATLAS xAOD Typed Backend
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Basics
- </span>
-</p>
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Using the ATLAS xAOD ServiceX Backend - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Using the ATLAS xAOD ServiceX Backend - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Using the ATLAS xAOD Typed Backend
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="configuration.html">
-   Configuration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data.html">
-   Data Samples
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data Samples</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  The Calibrated Collections
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Calibrated Collections</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   The Jet Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="calibration.html">
-   Calibration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="electrons.html">
-   The Electron Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="muons.html">
-   The Muon Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="taus.html">
-   The Tau Collections
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="met.html">
-   Missing
-   <span class="math notranslate nohighlight">
-    \(E_T\)
-   </span>
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Jet Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calibration.html">Calibration</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="electrons.html">The Electron Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muons.html">The Muon Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taus.html">The Tau Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="met.html">Missing <span class="math notranslate nohighlight">\(E_T\)</span></a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Uncalibrated Collections
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncalibrated Collections</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="tracks.html">
-   The Track Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="vertices.html">
-   The Vertex Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="caloclusters.html">
-   Calorimeter Clusters Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="trigger.html">
-   Accessing the Trigger
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="truth.html">
-   The Truth Particles Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="eventinfo.html">
-   Event Info
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="xaod_objects.html">
-   Advanced, Common, Features
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="tracks.html">The Track Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vertices.html">The Vertex Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caloclusters.html">Calorimeter Clusters Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trigger.html">Accessing the Trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="truth.html">The Truth Particles Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eventinfo.html">Event Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xaod_objects.html">Advanced, Common, Features</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../appendix/calibrations.html">
-   Calibrations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../appendix/py_help.html">
-   Using Python Help
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="old_access.html">
-   Old Collection Access Pattern
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../appendix/errors.html">
-   Understanding Errors
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/py_help.html">Using Python Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="old_access.html">Old Collection Access Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/errors.html">Understanding Errors</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapters/jets.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/jets.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gordonwatts/xaod_usage" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gordonwatts/xaod_usage/issues/new?title=Issue%20on%20page%20%2Fchapters/jets.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chapters/jets.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/jets.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Jet Collection</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jet-constituents">
-   Jet Constituents
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jet-moments">
-   Jet Moments
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-data-model">
-   The Data Model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#further-information">
-   Further Information
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jet-constituents">Jet Constituents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jet-moments">Jet Moments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-model">The Data Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further Information</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The Jet Collection</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jet-constituents">
-   Jet Constituents
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jet-moments">
-   Jet Moments
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-data-model">
-   The Data Model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#further-information">
-   Further Information
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-jet-collection">
-<span id="ch-jets"></span><h1>The Jet Collection<a class="headerlink" href="#the-jet-collection" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-jet-collection">
+<span id="ch-jets"></span><h1>The Jet Collection<a class="headerlink" href="#the-jet-collection" title="Link to this heading">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Not all examples on this page have been updated to r22 and ServiceX 3. Examples that have not been updated will be marked using a similar warning. These examples will be updated soon.</p>
+</div>
 <p>We’ll start with the Jet collection, one of the most commonly used collections in ATLAS. Below we’ll look at:</p>
 <ul class="simple">
 <li><p>Getting jet kinematic properties like <span class="math notranslate nohighlight">\(p_T\)</span> and <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
 <li><p>Getting the constituents that went into building the jet.</p></li>
 <li><p>Getting the <em>attributes</em> associated with the jet.</p></li>
 </ul>
-<p>The data model used in ATLAS’ xAOD is defined by the C++ objects. <code class="docutils literal notranslate"><span class="pre">func_adl</span></code> translates the python requests into C++ - so it needs to know about this data model. The <code class="docutils literal notranslate"><span class="pre">func_adl_servicex_xaodr21</span></code> package contains that information. For example, when we access a jet’s <span class="math notranslate nohighlight">\(p_T\)</span> with <code class="docutils literal notranslate"><span class="pre">j.pt()</span></code>, the <code class="docutils literal notranslate"><span class="pre">func_adl</span></code> system accesses meta-data in the <code class="docutils literal notranslate"><span class="pre">func_adl_servicex_xaodr21</span></code> to understand how to make the call, and that its return type is <code class="docutils literal notranslate"><span class="pre">double</span></code>. With few exceptions, that is how one accesses all methods on the xAOD objects.</p>
+<p>The data model used in ATLAS’ xAOD is defined by the C++ objects. <code class="docutils literal notranslate"><span class="pre">func_adl</span></code> translates the python requests into C++ - so it needs to know about this data model. The <code class="docutils literal notranslate"><span class="pre">func_adl_servicex_xaodr22</span></code> package contains that information. For example, when we access a jet’s <span class="math notranslate nohighlight">\(p_T\)</span> with <code class="docutils literal notranslate"><span class="pre">j.pt()</span></code>, the <code class="docutils literal notranslate"><span class="pre">func_adl</span></code> system accesses meta-data in the <code class="docutils literal notranslate"><span class="pre">func_adl_servicex_xaodr22</span></code> to understand how to make the call, and that its return type is <code class="docutils literal notranslate"><span class="pre">double</span></code>. With few exceptions, that is how one accesses all methods on the xAOD objects.</p>
 <p>The first thing to do is import what we need in our environment. This will be the case at the top of every chapter, but we show it for completness.</p>
 <ul class="simple">
-<li><p>The datasets. See the <a class="reference internal" href="data.html#ch-data-samples"><span class="std std-ref">DataSet</span></a>  chapter for more information.</p></li>
+<li><p>Function from config file that returns dataset dictionary</p></li>
 <li><p>Various utilities for plotting and array manipulation</p></li>
 <li><p>Some helpers for accessing attributes below (<code class="docutils literal notranslate"><span class="pre">cpp_float,</span> <span class="pre">cpp_vfloat</span></code>)</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">ds_zee</span> <span class="k">as</span> <span class="n">ds</span>
-<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">ds_jz2_exot15</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">get_data</span>
+<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">sx_f</span>
+<span class="kn">from</span> <span class="nn">func_adl_servicex_xaodr22</span> <span class="kn">import</span> <span class="n">FuncADLQueryPHYSLITE</span><span class="p">,</span> <span class="n">cpp_float</span><span class="p">,</span> <span class="n">cpp_vfloat</span>
+
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">awkward</span> <span class="k">as</span> <span class="nn">ak</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">func_adl_servicex_xaodr21</span> <span class="kn">import</span> <span class="n">cpp_float</span><span class="p">,</span> <span class="n">cpp_vfloat</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p id="sec-jet-simple">Here we return an array of all the jet <span class="math notranslate nohighlight">\(p_T\)</span>’s above 30 GeV. The first <code class="docutils literal notranslate"><span class="pre">SelectMany</span></code> transforms the <em>event</em> <code class="docutils literal notranslate"><span class="pre">e</span></code> into a list of jets with the <code class="docutils literal notranslate"><span class="pre">e.Jets()</span></code>. In this case it returns the default jet collection, properly calibrated and with overlaps removed (see the next chapter on <a class="reference internal" href="calibration.html#ch-calibration"><span class="std std-ref">calibration</span></a> for more information). The <code class="docutils literal notranslate"><span class="pre">SelectMany</span></code> returns this as a flattened array of jets.</p>
+<p>To show how to use func_adl with xaod on the jet collection we will get <span class="math notranslate nohighlight">\( p_{T} \)</span> data above 30GeV. To do this we must build the query using func_adl and pass it to the get_dataset function. To do this we utilize func_adl Where() function and then select the resulting data using Select() where we also scale the data to GeV. We also select <span class="math notranslate nohighlight">\( \eta \)</span> and emf data for later in the tutorial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">servicex</span> <span class="kn">import</span> <span class="n">ignore_cache</span>
-<span class="k">with</span> <span class="n">ignore_cache</span><span class="p">():</span>
-    <span class="n">jets</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span>
-            <span class="o">.</span><span class="n">SelectMany</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">Jets</span><span class="p">())</span>
-            <span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">pt</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">pt</span><span class="p">()</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">AsAwkwardArray</span><span class="p">(</span><span class="s1">&#39;JetPt&#39;</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">value</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">FuncADLQueryPHYSLITE</span><span class="p">()</span>
+<span class="n">jets_per_event</span> <span class="o">=</span> <span class="p">(</span><span class="n">query</span>
+                    <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">Jets</span><span class="p">())</span>
+                    <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">jets</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s1">&#39;pt&#39;</span><span class="p">:</span> <span class="n">jets</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">pt</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">pt</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">),</span>
+                            <span class="s1">&#39;eta&#39;</span><span class="p">:</span> <span class="n">jets</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">eta</span><span class="p">()),</span>
+                            <span class="s1">&#39;phi&#39;</span><span class="p">:</span> <span class="n">jets</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">phi</span><span class="p">()),</span>
+                        <span class="p">})</span>
+                 <span class="p">)</span>
+
+<span class="n">jet_data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">jets_per_event</span><span class="p">,</span><span class="n">sx_f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "671256fb41f145bc8d5b2de5e591d269", "version_major": 2, "version_minor": 0}
-</script><script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "428196f1c80f4f2a9351ff78473e1813", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "78dffe228f6c4f368101934fe01ded9a"}</script><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div></div>
 </div>
+<p>After getting the list of files that make up the dataset we need to loop over each file appending all the data into one array. To do this we get the data from each file in an Awkward array using uproot, then flatten it and append it to our data array. This data array can then be used to plot the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">jets</span><span class="o">.</span><span class="n">JetPt</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ak</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">jet_data</span><span class="o">.</span><span class="n">pt</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jet $p_T$ [GeV]&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of jets&#39;</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Jet $p_T$ distribution for $Z</span><span class="se">\\</span><span class="s1">rightarrow ee$ events&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Jet $p_T$ distribution&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/jets_5_0.png" src="../_images/jets_5_0.png" />
+<img alt="../_images/3dbe23cd1765a362bd3d37f408858c00ac5278f8d1365e6868237a34dfb47b3b.png" src="../_images/3dbe23cd1765a362bd3d37f408858c00ac5278f8d1365e6868237a34dfb47b3b.png" />
 </div>
 </div>
-<div class="section" id="jet-constituents">
-<h2>Jet Constituents<a class="headerlink" href="#jet-constituents" title="Permalink to this headline">¶</a></h2>
+<section id="jet-constituents">
+<h2>Jet Constituents<a class="headerlink" href="#jet-constituents" title="Link to this heading">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This example has not been updated to r22 and ServiceX 3 yet.</p>
+</div>
 <p>Jets are composed of <code class="docutils literal notranslate"><span class="pre">TopoClusters</span></code> in ATLAS, and unfortunately, they are often skimmed away. They are not present, for example, in <code class="docutils literal notranslate"><span class="pre">DAOD_PHYS</span></code>, which is the skim being used here for most examples. To demonstrate their use we’ll pull from a R21 EXOT15 skim that contains them. Since each jet has an array of topo clusters, and we are just interested in all the <code class="docutils literal notranslate"><span class="pre">TopoClusters</span></code>, we use two <code class="docutils literal notranslate"><span class="pre">SelectMany</span></code> calls to flatten both arrays.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -473,6 +503,22 @@ const thebe_selector_output = ".output, .cell_output"
                     <span class="o">.</span><span class="n">AsAwkwardArray</span><span class="p">(</span><span class="s1">&#39;JetClusterPt&#39;</span><span class="p">)</span>
                     <span class="o">.</span><span class="n">value</span><span class="p">()</span>
                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">topo_clusters</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_jz2_exot15</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                     <span class="o">.</span><span class="n">SelectMany</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">Jets</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                     <span class="o">.</span><span class="n">SelectMany</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">getConstituents</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                     <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tc</span><span class="p">:</span> <span class="n">tc</span><span class="o">.</span><span class="n">pt</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                     <span class="o">.</span><span class="n">AsAwkwardArray</span><span class="p">(</span><span class="s1">&#39;JetClusterPt&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                     <span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>                 <span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;ds_jz2_exot15&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -487,29 +533,35 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/jets_8_0.png" src="../_images/jets_8_0.png" />
+<img alt="../_images/6c63a0637fb5f46efaa1d33dbf74d34a9bd034e78c2d9f8bd3a3651f6067d62b.png" src="../_images/6c63a0637fb5f46efaa1d33dbf74d34a9bd034e78c2d9f8bd3a3651f6067d62b.png" />
 </div>
 </div>
-</div>
-<div class="section" id="jet-moments">
-<h2>Jet Moments<a class="headerlink" href="#jet-moments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="jet-moments">
+<h2>Jet Moments<a class="headerlink" href="#jet-moments" title="Link to this heading">#</a></h2>
 <p>Attributes are called <em>moments</em> by the ATLAS Jet/ETMiss group. They are extra information that has been added into the jet object. The <a class="reference external" href="https://twiki.cern.ch/twiki/bin/view/AtlasProtected/Run2JetMoments">Run 2 Moments Page</a> lists all the moments. To access them you’ll need to know the return type explicitly, and parameterize your call to <code class="docutils literal notranslate"><span class="pre">getAttribute</span></code> appropriately.</p>
 <p>Here we grab the <code class="docutils literal notranslate"><span class="pre">EMFrac</span></code> moment, which is the EM Fraction of the jet. It is a single float for each jet. We specify the type with the <code class="docutils literal notranslate"><span class="pre">cpp_float</span></code> in the <code class="docutils literal notranslate"><span class="pre">getAttribute[cpp_float]('EMFrac')</span></code> call. This is translated into C++ that looks something like <code class="docutils literal notranslate"><span class="pre">j-&gt;getAttribute&lt;float&gt;(&quot;EMFrac&quot;)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moments</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span>
-           <span class="o">.</span><span class="n">SelectMany</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">Jets</span><span class="p">())</span>
-           <span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">pt</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span>
-           <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">[</span><span class="n">cpp_float</span><span class="p">](</span><span class="s1">&#39;EMFrac&#39;</span><span class="p">))</span>
-           <span class="o">.</span><span class="n">AsAwkwardArray</span><span class="p">(</span><span class="s1">&#39;emfrac&#39;</span><span class="p">)</span>
-           <span class="o">.</span><span class="n">value</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">FuncADLQueryPHYSLITE</span><span class="p">()</span>
+<span class="n">jets_per_event</span> <span class="o">=</span> <span class="p">(</span><span class="n">query</span>
+                  <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">Jets</span><span class="p">())</span>
+                  <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">jets</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s1">&#39;emf&#39;</span><span class="p">:</span> <span class="n">jets</span><span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">pt</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">[</span><span class="n">cpp_float</span><span class="p">](</span><span class="s1">&#39;EMFrac&#39;</span><span class="p">)),</span>
+                     <span class="p">})</span>
+                 <span class="p">)</span>
+
+<span class="n">moments_data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">jets_per_event</span><span class="p">,</span> <span class="n">sx_f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "745582f45059445f986e71ea8e1b92e9", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">moments</span><span class="o">.</span><span class="n">emfrac</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ak</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">moments_data</span><span class="o">.</span><span class="n">emf</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;EM Fraction&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of jets&#39;</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;EM Fraction of jets in JZ3 events&#39;</span><span class="p">)</span>
@@ -517,25 +569,30 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/jets_11_0.png" src="../_images/jets_11_0.png" />
+<img alt="../_images/2c85666ce1b37011d197dc4bb8e48f2fa7e9bcee221856328ff3205d55bfada9.png" src="../_images/2c85666ce1b37011d197dc4bb8e48f2fa7e9bcee221856328ff3205d55bfada9.png" />
 </div>
 </div>
 <p>More complex objects can come back as well. For example, vectors of floats (<code class="docutils literal notranslate"><span class="pre">std::vector&lt;float&gt;</span></code>). Here is a sample with the sum track <span class="math notranslate nohighlight">\(p_T\)</span> when track <span class="math notranslate nohighlight">\(p_T &gt; 500\)</span> MeV.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_pt</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span>
-          <span class="o">.</span><span class="n">SelectMany</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">Jets</span><span class="p">(</span><span class="s2">&quot;AntiKt4EMPFlowJets&quot;</span><span class="p">))</span>
-          <span class="o">.</span><span class="n">Where</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">pt</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">31</span><span class="p">)</span>
-          <span class="o">.</span><span class="n">SelectMany</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">[</span><span class="n">cpp_vfloat</span><span class="p">](</span><span class="s1">&#39;SumPtTrkPt500&#39;</span><span class="p">))</span>
-          <span class="o">.</span><span class="n">AsAwkwardArray</span><span class="p">(</span><span class="s1">&#39;sum_pt&#39;</span><span class="p">)</span>
-          <span class="o">.</span><span class="n">value</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">FuncADLQueryPHYSLITE</span><span class="p">()</span>
+<span class="n">jets_per_event</span> <span class="o">=</span> <span class="p">(</span><span class="n">query</span>
+                  <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">Jets</span><span class="p">())</span>
+                  <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">jets</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s1">&#39;sum_pt&#39;</span><span class="p">:</span> <span class="n">jets</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">j</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">[</span><span class="n">cpp_vfloat</span><span class="p">](</span><span class="s1">&#39;SumPtTrkPt500&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+                    <span class="p">})</span>
+                 <span class="p">)</span>
+
+<span class="n">moment_data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">jets_per_event</span><span class="p">,</span><span class="n">sx_f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c86f0f39b3f34d9c996e8bb752f81942", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sum_pt</span><span class="o">.</span><span class="n">sum_pt</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ak</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">ak</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">moment_data</span><span class="o">.</span><span class="n">sum_pt</span><span class="p">)),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sum track $p_T$ [GeV]&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of jets&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
@@ -544,40 +601,34 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/jets_14_0.png" src="../_images/jets_14_0.png" />
+<img alt="../_images/bb2eebf318f0eb258a08bc66f51dfc4eb7a5153aaf0b2e7b5d55cdd1e8051fd1.png" src="../_images/bb2eebf318f0eb258a08bc66f51dfc4eb7a5153aaf0b2e7b5d55cdd1e8051fd1.png" />
 </div>
 </div>
 <p>As with everything else in the ATLAS data model, even if they are reconstructed and associated with the jet, they can be stripped out with slimming - so just because they are declared on the Run 2 Moments page, it doesn’t mean they actually exist in the data file you are looking at.</p>
 <p>This describes the basics of how to access jets in the ATLAS xAOD. The next chapter will continue discussing jets, focusing on how calibrations are handled by the <code class="docutils literal notranslate"><span class="pre">func_adl</span></code> backend.</p>
-</div>
-<div class="section" id="the-data-model">
-<h2>The Data Model<a class="headerlink" href="#the-data-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-data-model">
+<h2>The Data Model<a class="headerlink" href="#the-data-model" title="Link to this heading">#</a></h2>
 <p>The data model when this documentation was last built was:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">func_adl_servicex_xaodr21.xAOD.jet_v1</span> <span class="kn">import</span> <span class="n">Jet_v1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">func_adl_servicex_xaodr22.xAOD.jet_v1</span> <span class="kn">import</span> <span class="n">Jet_v1</span>
 <span class="n">help</span><span class="p">(</span><span class="n">Jet_v1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class Jet_v1 in module func_adl_servicex_xaodr21.xAOD.jet_v1:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class Jet_v1 in module func_adl_servicex_xaodr22.xAOD.jet_v1:
 
 class Jet_v1(builtins.object)
  |  A class
  |  
  |  Methods defined here:
  |  
- |  btagging(self) -&gt; &#39;func_adl_servicex_xaodr21.xAOD.btagging_v1.BTagging_v1&#39;
- |      A method
- |  
- |  btaggingLink(self) -&gt; &#39;func_adl_servicex_xaodr21.elementlink_datavector_xaod_btagging_v1__.ElementLink_DataVector_xAOD_BTagging_v1__&#39;
- |      A method
- |  
  |  clearDecorations(self) -&gt; &#39;bool&#39;
  |      A method
  |  
- |  constituentLinks(self) -&gt; &#39;func_adl_servicex_xaodr21.vector_elementlink_datavector_xaod_iparticle___.vector_ElementLink_DataVector_xAOD_IParticle___&#39;
+ |  constituentLinks(self) -&gt; &#39;func_adl_servicex_xaodr22.vector_elementlink_datavector_xaod_iparticle___.vector_ElementLink_DataVector_xAOD_IParticle___&#39;
  |      A method
  |  
  |  e(self) -&gt; &#39;float&#39;
@@ -586,7 +637,13 @@ class Jet_v1(builtins.object)
  |  eta(self) -&gt; &#39;float&#39;
  |      A method
  |  
- |  getConstituents(self) -&gt; &#39;func_adl_servicex_xaodr21.xAOD.jetconstituentvector.JetConstituentVector&#39;
+ |  getAlgorithmType(self) -&gt; &#39;func_adl_servicex_xaodr22.xAOD.jetalgorithmtype.JetAlgorithmType.ID&#39;
+ |      A method
+ |  
+ |  getConstituents(self) -&gt; &#39;func_adl_servicex_xaodr22.xAOD.jetconstituentvector.JetConstituentVector&#39;
+ |      A method
+ |  
+ |  getInputType(self) -&gt; &#39;func_adl_servicex_xaodr22.xAOD.jetinput.JetInput.Type&#39;
  |      A method
  |  
  |  getSizeParameter(self) -&gt; &#39;float&#39;
@@ -607,7 +664,7 @@ class Jet_v1(builtins.object)
  |  numConstituents(self) -&gt; &#39;int&#39;
  |      A method
  |  
- |  p4(self) -&gt; &#39;func_adl_servicex_xaodr21.tlorentzvector.TLorentzVector&#39;
+ |  p4(self) -&gt; &#39;func_adl_servicex_xaodr22.tlorentzvector.TLorentzVector&#39;
  |      A method
  |  
  |  phi(self) -&gt; &#39;float&#39;
@@ -628,7 +685,10 @@ class Jet_v1(builtins.object)
  |  rapidity(self) -&gt; &#39;float&#39;
  |      A method
  |  
- |  rawConstituent(self, i: &#39;int&#39;) -&gt; &#39;func_adl_servicex_xaodr21.xAOD.iparticle.IParticle&#39;
+ |  rawConstituent(self, i: &#39;int&#39;) -&gt; &#39;func_adl_servicex_xaodr22.xAOD.iparticle.IParticle&#39;
+ |      A method
+ |  
+ |  trackIndices(self) -&gt; &#39;bool&#39;
  |      A method
  |  
  |  usingPrivateStore(self) -&gt; &#39;bool&#39;
@@ -663,13 +723,13 @@ class Jet_v1(builtins.object)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">func_adl_servicex_xaodr21.xAOD.jetconstituent</span> <span class="kn">import</span> <span class="n">JetConstituent</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">func_adl_servicex_xaodr22.xAOD.jetconstituent</span> <span class="kn">import</span> <span class="n">JetConstituent</span>
 <span class="n">help</span><span class="p">(</span><span class="n">JetConstituent</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class JetConstituent in module func_adl_servicex_xaodr21.xAOD.jetconstituent:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class JetConstituent in module func_adl_servicex_xaodr22.xAOD.jetconstituent:
 
 class JetConstituent(builtins.object)
  |  A class
@@ -700,7 +760,7 @@ class JetConstituent(builtins.object)
  |  rapidity(self) -&gt; &#39;float&#39;
  |      A method
  |  
- |  rawConstituent(self) -&gt; &#39;func_adl_servicex_xaodr21.xAOD.iparticle.IParticle&#39;
+ |  rawConstituent(self) -&gt; &#39;func_adl_servicex_xaodr22.xAOD.iparticle.IParticle&#39;
  |      A method
  |  
  |  ----------------------------------------------------------------------
@@ -715,23 +775,17 @@ class JetConstituent(builtins.object)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="further-information">
-<h2>Further Information<a class="headerlink" href="#further-information" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="further-information">
+<h2>Further Information<a class="headerlink" href="#further-information" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://gitlab.cern.ch/atlas/athena/-/blob/21.2/Event/xAOD/xAODJet/xAODJet/versions/Jet_v1.h"><code class="docutils literal notranslate"><span class="pre">xAOD::Jet_v1</span></code> C++ header file</a> with all the inline documentation.</p></li>
 <li><p>The <a class="reference external" href="https://gitlab.cern.ch/atlas/athena/-/blob/21.2/Event/xAOD/xAODJet/xAODJet/JetConstituentVector.h"><code class="docutils literal notranslate"><span class="pre">xAOD::JetConstituent</span></code> C++ header File</a> with all the inline documentation.</p></li>
 <li><p>The <a class="reference external" href="https://twiki.cern.ch/twiki/bin/view/AtlasProtected/JetEtmissRecommendationsR21">Jet ET-Miss Recommendation Pages for R21</a> on the ATLAS TWiki</p></li>
 <li><p>The <a class="reference external" href="https://twiki.cern.ch/twiki/bin/view/AtlasProtected/Run2JetMoments">Run 2 Moments Page</a></p></li>
 </ul>
-</div>
-</div>
-
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"02531078a85d412186bb38ab0222e922": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "02cfae82217b42ff982720903af1b9f2": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_788d0d63162e441992e4a43ca8a9e2af", "max": 20.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_fddc87ef062a485f94230721eaee41fc", "value": 20.0}}, "1af856ca0fb34ea6a98a3ed0effdcaad": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_e7837ee2d08e46e0a1cd6fcca17d11e6", "max": 20.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_ecc748b9951d4fbab815905839cbc8cf", "value": 20.0}}, "213a0c379a6544e6b4917356b7edf7bb": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "230992f4613b47769bead4433af3cf53": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": "inline-flex", "flex": null, "flex_flow": "row wrap", "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "30d3bdc8243349df984744f1270914db": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "428196f1c80f4f2a9351ff78473e1813": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_43e0d955aad44c4abe362eb3a558f41f", "IPY_MODEL_02cfae82217b42ff982720903af1b9f2", "IPY_MODEL_9819a06acc6a4d40a78867f8310f1ac5"], "layout": "IPY_MODEL_b64d4a09cd254deb8099deaf6ca36e7a"}}, "43e0d955aad44c4abe362eb3a558f41f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_02531078a85d412186bb38ab0222e922", "placeholder": "\u200b", "style": "IPY_MODEL_58d180fcd4e8448cbb3785cb0881ed71", "value": "        rucio://mc16_13TeV:m... Downloaded: 100%"}}, "46b77f96b6a642b4b3894f390bc42496": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "58d180fcd4e8448cbb3785cb0881ed71": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "671256fb41f145bc8d5b2de5e591d269": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_ad44fb42aaa447d585c6a006d14b366e", "IPY_MODEL_1af856ca0fb34ea6a98a3ed0effdcaad", "IPY_MODEL_787056e8c4a7482faf73f50b4058dd5f"], "layout": "IPY_MODEL_230992f4613b47769bead4433af3cf53"}}, "787056e8c4a7482faf73f50b4058dd5f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_e1d7a8ede7f14f19a816e43155425b6d", "placeholder": "\u200b", "style": "IPY_MODEL_e005a67b39534340b20ff7a192c0a944", "value": " 20/20 [02:27]"}}, "788d0d63162e441992e4a43ca8a9e2af": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": "2", "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8595a3a1a4c24a26a089857fa384c189": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "9819a06acc6a4d40a78867f8310f1ac5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_213a0c379a6544e6b4917356b7edf7bb", "placeholder": "\u200b", "style": "IPY_MODEL_46b77f96b6a642b4b3894f390bc42496", "value": " 20/20 [02:28]"}}, "ad44fb42aaa447d585c6a006d14b366e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_30d3bdc8243349df984744f1270914db", "placeholder": "\u200b", "style": "IPY_MODEL_8595a3a1a4c24a26a089857fa384c189", "value": "rucio://mc16_13TeV:m...: 100%"}}, "b64d4a09cd254deb8099deaf6ca36e7a": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": "inline-flex", "flex": null, "flex_flow": "row wrap", "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "e005a67b39534340b20ff7a192c0a944": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "e1d7a8ede7f14f19a816e43155425b6d": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e7837ee2d08e46e0a1cd6fcca17d11e6": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": "2", "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ecc748b9951d4fbab815905839cbc8cf": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "fddc87ef062a485f94230721eaee41fc": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}}, "version_major": 2, "version_minor": 0}
-</script>
-
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -745,7 +799,7 @@ class JetConstituent(builtins.object)
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters"
         },
         predefinedOutput: true
@@ -753,44 +807,106 @@ class JetConstituent(builtins.object)
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="data.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Data Samples</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Samples</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="calibration.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="calibration.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Calibration</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By IRIS-HEP (Gordon Watts)<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-      </div>
-    </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jet-constituents">Jet Constituents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jet-moments">Jet Moments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-model">The Data Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further Information</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By IRIS-HEP (Gordon Watts)
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

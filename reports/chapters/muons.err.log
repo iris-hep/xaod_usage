@@ -1,0 +1,68 @@
+Traceback (most recent call last):
+  File "/home/rjanusia/.local/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/rjanusia/.local/lib/python3.9/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/rjanusia/.local/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib64/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/home/rjanusia/.local/lib/python3.9/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/rjanusia/.local/lib/python3.9/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/rjanusia/.local/lib/python3.9/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import logging
+# logging.basicConfig(level=logging.DEBUG)
+# logging.getLogger("func_adl_xAOD.common.local_dataset").setLevel(level=logging.DEBUG)
+# from servicex import ignore_cache
+# with ignore_cache():
+muon_working_points = ['Loose', 'Medium','Tight']
+muons_async = [
+    (calib_tools.query_update(ds, muon_working_point=wp)
+        .SelectMany(lambda e: [mu.eta() for mu in e.Muons()])
+        .AsAwkwardArray('eta')
+        .value_async())
+    for wp in muon_working_points
+]
+muons_wp = await asyncio.gather(*muons_async)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[4], line 7[0m
+[1;32m      2[0m [38;5;66;03m# logging.basicConfig(level=logging.DEBUG)[39;00m
+[1;32m      3[0m [38;5;66;03m# logging.getLogger("func_adl_xAOD.common.local_dataset").setLevel(level=logging.DEBUG)[39;00m
+[1;32m      4[0m [38;5;66;03m# from servicex import ignore_cache[39;00m
+[1;32m      5[0m [38;5;66;03m# with ignore_cache():[39;00m
+[1;32m      6[0m muon_working_points [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mLoose[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mMedium[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mTight[39m[38;5;124m'[39m]
+[0;32m----> 7[0m muons_async [38;5;241m=[39m [
+[1;32m      8[0m     (calib_tools[38;5;241m.[39mquery_update(ds, muon_working_point[38;5;241m=[39mwp)
+[1;32m      9[0m         [38;5;241m.[39mSelectMany([38;5;28;01mlambda[39;00m e: [mu[38;5;241m.[39meta() [38;5;28;01mfor[39;00m mu [38;5;129;01min[39;00m e[38;5;241m.[39mMuons()])
+[1;32m     10[0m         [38;5;241m.[39mAsAwkwardArray([38;5;124m'[39m[38;5;124meta[39m[38;5;124m'[39m)
+[1;32m     11[0m         [38;5;241m.[39mvalue_async())
+[1;32m     12[0m     [38;5;28;01mfor[39;00m wp [38;5;129;01min[39;00m muon_working_points
+[1;32m     13[0m ]
+[1;32m     14[0m muons_wp [38;5;241m=[39m [38;5;28;01mawait[39;00m asyncio[38;5;241m.[39mgather([38;5;241m*[39mmuons_async)
+
+Cell [0;32mIn[4], line 8[0m, in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m      2[0m [38;5;66;03m# logging.basicConfig(level=logging.DEBUG)[39;00m
+[1;32m      3[0m [38;5;66;03m# logging.getLogger("func_adl_xAOD.common.local_dataset").setLevel(level=logging.DEBUG)[39;00m
+[1;32m      4[0m [38;5;66;03m# from servicex import ignore_cache[39;00m
+[1;32m      5[0m [38;5;66;03m# with ignore_cache():[39;00m
+[1;32m      6[0m muon_working_points [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mLoose[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mMedium[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mTight[39m[38;5;124m'[39m]
+[1;32m      7[0m muons_async [38;5;241m=[39m [
+[0;32m----> 8[0m     (calib_tools[38;5;241m.[39mquery_update(ds, muon_working_point[38;5;241m=[39mwp)
+[1;32m      9[0m         [38;5;241m.[39mSelectMany([38;5;28;01mlambda[39;00m e: [mu[38;5;241m.[39meta() [38;5;28;01mfor[39;00m mu [38;5;129;01min[39;00m e[38;5;241m.[39mMuons()])
+[1;32m     10[0m         [38;5;241m.[39mAsAwkwardArray([38;5;124m'[39m[38;5;124meta[39m[38;5;124m'[39m)
+[1;32m     11[0m         [38;5;241m.[39mvalue_async())
+[1;32m     12[0m     [38;5;28;01mfor[39;00m wp [38;5;129;01min[39;00m muon_working_points
+[1;32m     13[0m ]
+[1;32m     14[0m muons_wp [38;5;241m=[39m [38;5;28;01mawait[39;00m asyncio[38;5;241m.[39mgather([38;5;241m*[39mmuons_async)
+
+[0;31mNameError[0m: name 'ds' is not defined
+

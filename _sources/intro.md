@@ -1,5 +1,9 @@
 # Using the ATLAS xAOD Typed Backend
 
+```{warning}
+This documentation book is currently in the proccess of being updated to r22 and ServiceX 3. By using a combination of the updated examples and the old examples an understanding of how to complete the examples using the latest version can be made. For up to date examples look to "The Jet Collection" page.
+```
+
 Come here to learn:
 
 - How to setup your environment to access xAOD data in ATLAS (R21)
@@ -46,3 +50,7 @@ the C++ ATLAS xAOD backend based on the Release 21 of the ATLAS analysis softwar
 be defined in your `servicex.yaml` or `.servicex` file in your `$HOME` directory.
 
 See the chapter on [configuration](ch-configuration) for more information.
+
+## Improvements
+
+The source code for this book can be found in the [xaod_usage](https://github.com/gordonwatts/xaod_usage) github repository. Please feel free to submit a pull request or create an issue for new things that are needed!

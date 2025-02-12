@@ -1,4 +1,5 @@
 (ch-data-samples)=
+
 # Data Samples
 
 ATLAS data comes in many flavors. Because the complete data is so large, ATLAS makes a number of different samples that are slimmed down in various ways. The consequences of this can be far reaching: if a derivation removes attributes necessary to perform a calibration for muons, then accessing calibrated muons will not be possible downstream.
@@ -17,12 +18,21 @@ For Run 2, software release R21, we use the following datasets:
 | `ds_bphys` | | mc16.999031.P8BEG_23lo_ggX18p4_Upsilon1Smumu_4mu_3pt2.deriv.DAOD_BPHY4.e8304_a875_r10724_r10726_p3712_pUM999999 |
 | `ds_jz2_exot15` | 15989500 | mc16_13TeV.361022.Pythia8EvtGen_A14NNPDF23LO_jetjet_JZ2W.deriv.DAOD_EXOT15.e3668_s3126_r9364_r9315_p4696 |
 
-You can find the datasets like `ds_Zee` defined in the `config.py` file. If running against a `servicex` backend, they are defined as:
+You can find the datasets like `ds_Zee` defined in the `config.py` file. If running against a `servicex` backend for R21 files, they are defined as:
 
 ```python
-from func_adl_servicex_xaodr21 import SXDSAtlasxAODR21
+from func_adl_servicex_xaodr21 import SXDSAtlasxAODR21PHYS
 
-ds = SXDSAtlasxAODR21(rucio_dataset_name, backend="xaod")
+ds = SXDSAtlasxAODR21PHYS(rucio_dataset_name, backend="xaod")
+```
+
+and similarly for Run 3 data:
+
+```python
+from func_adl_servicex_xaodr24 import SXDSAtlasxAODR21PHYS, SXDSAtlasxAODR21PHYSLITE
+
+ds_phys = SXDSAtlasxAODR21PHYS(rucio_dataset_name, backend="xaod")
+ds_physlite = SXDSAtlasxAODR21PHYSLITE(rucio_dataset_name, backend="xaod")
 ```
 
 And if running on a local file, then the following definition is made:
@@ -37,6 +47,8 @@ class xAODLocalTyped(SXLocalxAOD[Event]):
 
 ds = xAODLocalTyped(local_path_of_dataset_file)
 ```
+
+If running on Run 3 data, replace the `xaodr21` part of the package name with `xaodr24` or `xaodr22`.
 
 Note the use of the class `Event`: this defines the types and metadata for the `xAOD` backend and allows you to access all the various methods and types without having to resort to heuristics (which work for simple cases, but not complex ones).
 

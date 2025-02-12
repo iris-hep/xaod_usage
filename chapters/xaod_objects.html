@@ -1,423 +1,490 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Advanced, Common, Features &#8212; Using the ATLAS xAOD ServiceX Backend</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
-
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/xaod_objects';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Calibrations" href="../appendix/calibrations.html" />
+    <link rel="next" title="Using Python Help" href="../appendix/py_help.html" />
     <link rel="prev" title="Event Info" href="eventinfo.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Using the ATLAS xAOD ServiceX Backend</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Using the ATLAS xAOD Typed Backend
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Basics
- </span>
-</p>
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Using the ATLAS xAOD ServiceX Backend - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Using the ATLAS xAOD ServiceX Backend - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Using the ATLAS xAOD Typed Backend
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="configuration.html">
-   Configuration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data.html">
-   Data Samples
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data Samples</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  The Calibrated Collections
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Calibrated Collections</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="jets.html">
-   The Jet Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="calibration.html">
-   Calibration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="electrons.html">
-   The Electron Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="muons.html">
-   The Muon Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="taus.html">
-   The Tau Collections
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="met.html">
-   Missing
-   <span class="math notranslate nohighlight">
-    \(E_T\)
-   </span>
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="jets.html">The Jet Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calibration.html">Calibration</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="electrons.html">The Electron Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muons.html">The Muon Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taus.html">The Tau Collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="met.html">Missing <span class="math notranslate nohighlight">\(E_T\)</span></a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Uncalibrated Collections
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncalibrated Collections</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="tracks.html">
-   The Track Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="vertices.html">
-   The Vertex Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="caloclusters.html">
-   Calorimeter Clusters Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="trigger.html">
-   Accessing the Trigger
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="truth.html">
-   The Truth Particles Collection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="eventinfo.html">
-   Event Info
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Advanced, Common, Features
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="tracks.html">The Track Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vertices.html">The Vertex Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caloclusters.html">Calorimeter Clusters Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trigger.html">Accessing the Trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="truth.html">The Truth Particles Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eventinfo.html">Event Info</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced, Common, Features</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendices
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../appendix/calibrations.html">
-   Calibrations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../appendix/py_help.html">
-   Using Python Help
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="old_access.html">
-   Old Collection Access Pattern
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../appendix/errors.html">
-   Understanding Errors
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/py_help.html">Using Python Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="old_access.html">Old Collection Access Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/errors.html">Understanding Errors</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapters/xaod_objects.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/xaod_objects.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gordonwatts/xaod_usage" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gordonwatts/xaod_usage/issues/new?title=Issue%20on%20page%20%2Fchapters/xaod_objects.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chapters/xaod_objects.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/xaod_objects.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Advanced, Common, Features</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#object-decorations">
-   Object Decorations
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-decorations">Object Decorations</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Advanced, Common, Features</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#object-decorations">
-   Object Decorations
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="advanced-common-features">
-<h1>Advanced, Common, Features<a class="headerlink" href="#advanced-common-features" title="Permalink to this headline">¶</a></h1>
-<p>The ATLAS data model’s primary objects, like the <code class="docutils literal notranslate"><span class="pre">Jet</span></code> or <code class="docutils literal notranslate"><span class="pre">Electron</span></code> (or any others) have some features in common. A description of accessing them is gathered here.</p>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="advanced-common-features">
+<h1>Advanced, Common, Features<a class="headerlink" href="#advanced-common-features" title="Link to this heading">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The examples on this page have not been updated to use r22 and ServiceX 3 yet.</p>
+</div>
+<p>The ATLAS data model’s primary objects, like the <code class="docutils literal notranslate"><span class="pre">Jet</span></code> or <code class="docutils literal notranslate"><span class="pre">Electron</span></code> (or any others) have some features in common. This chapter talks about access an objet’s decorations (and please let us know if there are others that should be described).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">ds_bphys</span> <span class="k">as</span> <span class="n">ds</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">awkward</span> <span class="k">as</span> <span class="nn">ak</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">func_adl_servicex_xaodr21</span> <span class="kn">import</span> <span class="n">cpp_float</span><span class="p">,</span> <span class="n">cpp_string</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">ds_bphys</span> <span class="k">as</span> <span class="n">ds</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">awkward</span> <span class="k">as</span> <span class="nn">ak</span>
+
+<span class="ne">ImportError</span>: cannot import name &#39;ds_bphys&#39; from &#39;config&#39; (/home/rjanusia/WorkingDirectory/IrisHep/xaod_usage/book/chapters/config.py)
+</pre></div>
 </div>
-<div class="section" id="object-decorations">
-<h2>Object Decorations<a class="headerlink" href="#object-decorations" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<section id="object-decorations">
+<h2>Object Decorations<a class="headerlink" href="#object-decorations" title="Link to this heading">#</a></h2>
 <p>The XAOD data model is designed to be extensible. Another object member can be added at anytime, even if the object doesn’t have an accessor method. In fact, almost all data in the data model is stored as a named column: when you access <code class="docutils literal notranslate"><span class="pre">jet.pt()</span></code> the <code class="docutils literal notranslate"><span class="pre">pt</span></code> method actually does a lookup on a decorator with the name <code class="docutils literal notranslate"><span class="pre">pt</span></code> associated with the <code class="docutils literal notranslate"><span class="pre">jet</span></code> object.</p>
 <p>This feature is used extensively in reconstruction and calibration processing. Since decorators can be almost any type of access, in <code class="docutils literal notranslate"><span class="pre">func_adl</span></code> you have to used parameterized access to get at them. Here is an example from a b-physics derived dataset. We’ll demo this by translating a snippet of <em>b</em>-physics code provided by Peter Onyisi.</p>
 <p>If you’ve not worked with derived BPHYS datasets, they are unique-ish in the ATLAS world. Since statistics are the name of the game, almost everything is stripped out. Here we want to go after the <code class="docutils literal notranslate"><span class="pre">QUAD_mass</span></code> decoration on the <code class="docutils literal notranslate"><span class="pre">BPHY4Quads</span></code> collection in the sample. First job is to figure out what the <code class="docutils literal notranslate"><span class="pre">BPHY4Quads</span></code> collection is. The ATLAS <code class="docutils literal notranslate"><span class="pre">checkxAOD.py</span></code> tool is very useful here. If you do that, you’ll find the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bash<span class="o">][</span>atlas AnalysisBase-21.2.62<span class="o">]</span>:data &gt; checkxAOD.py DAOD_BPHY4.999031._000001.pool.root.1
-<span class="o">========================================================================================================================</span> File: DAOD_BPHY4.999031._000001.pool.root.1
-------------------------------------------------------------------------------------------------------------------------    Memory size        Disk Size       Size/Event  Compression Entries  Name <span class="o">(</span>Type<span class="o">)</span>
-------------------------------------------------------------------------------------------------------------------------       <span class="m">333</span>.24 kB         <span class="m">50</span>.19 kB     <span class="m">0</span>.00 kB/event    <span class="m">6</span>.64     <span class="m">20788</span>   TrigConfKeys <span class="o">(</span>xAOD::TrigConfKeys_v1<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-      <span class="m">2544</span>.13 kB        <span class="m">516</span>.87 kB     <span class="m">0</span>.02 kB/event    <span class="m">4</span>.92     <span class="m">20788</span>   GSFConversionVertices <span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span> <span class="o">[</span>egamma<span class="o">]</span>
-      <span class="m">4089</span>.23 kB       <span class="m">1132</span>.31 kB     <span class="m">0</span>.05 kB/event    <span class="m">3</span>.61     <span class="m">20788</span>   LVL1MuonRoIs <span class="o">(</span>DataVector&lt;xAOD::MuonRoI_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-      <span class="m">6630</span>.11 kB       <span class="m">1189</span>.60 kB     <span class="m">0</span>.06 kB/event    <span class="m">5</span>.57     <span class="m">20788</span>   InDetForwardTrackParticles <span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span> <span class="o">[</span>InDet<span class="o">]</span>
-     <span class="m">12605</span>.41 kB       <span class="m">1757</span>.67 kB     <span class="m">0</span>.08 kB/event    <span class="m">7</span>.17     <span class="m">20788</span>   EventInfo <span class="o">(</span>xAOD::EventInfo_v1<span class="o">)</span> <span class="o">[</span>EvtId<span class="o">]</span>
-      <span class="m">7545</span>.86 kB       <span class="m">2787</span>.27 kB     <span class="m">0</span>.13 kB/event    <span class="m">2</span>.71     <span class="m">20788</span>   HLT_xAOD__MuonContainer_MuonEFInfo_FullScan <span class="o">(</span>DataVector&lt;xAOD::Muon_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-     <span class="m">23009</span>.07 kB       <span class="m">2875</span>.53 kB     <span class="m">0</span>.14 kB/event    <span class="m">8</span>.00     <span class="m">20788</span>   McEventInfo <span class="o">(</span>PileUpEventInfo_p5<span class="o">)</span> <span class="o">[</span>EvtId<span class="o">]</span>
-     <span class="m">14812</span>.24 kB       <span class="m">3296</span>.27 kB     <span class="m">0</span>.16 kB/event    <span class="m">4</span>.49     <span class="m">20788</span>   HLT_xAOD__TrigBphysContainer_EFTrackMass <span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-     <span class="m">21498</span>.52 kB       <span class="m">4903</span>.93 kB     <span class="m">0</span>.24 kB/event    <span class="m">4</span>.38     <span class="m">20788</span>   HLT_xAOD__MuonContainer_MuonEFInfo <span class="o">(</span>DataVector&lt;xAOD::Muon_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-     <span class="m">61415</span>.48 kB       <span class="m">4976</span>.95 kB     <span class="m">0</span>.24 kB/event   <span class="m">12</span>.34     <span class="m">20788</span>   HLT_xAOD__TrigBphysContainer_EFBMuMuXFex <span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-    <span class="m">217772</span>.43 kB       <span class="m">5590</span>.42 kB     <span class="m">0</span>.27 kB/event   <span class="m">38</span>.95     <span class="m">20788</span>   xTrigDecision <span class="o">(</span>xAOD::TrigDecision_v1<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-    <span class="m">107825</span>.61 kB       <span class="m">7299</span>.25 kB     <span class="m">0</span>.35 kB/event   <span class="m">14</span>.77     <span class="m">20788</span>   HLT_xAOD__TrigBphysContainer_EFMultiMuFex <span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-     <span class="m">26836</span>.23 kB       <span class="m">8364</span>.40 kB     <span class="m">0</span>.40 kB/event    <span class="m">3</span>.21     <span class="m">20788</span>   Electrons <span class="o">(</span>DataVector&lt;xAOD::Electron_v1&gt;<span class="o">)</span> <span class="o">[</span>egamma<span class="o">]</span>
-    <span class="m">104940</span>.43 kB       <span class="m">8684</span>.58 kB     <span class="m">0</span>.42 kB/event   <span class="m">12</span>.08     <span class="m">20788</span>   HLT_xAOD__TrigBphysContainer_L2BMuMuFex <span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-     <span class="m">14616</span>.80 kB       <span class="m">8693</span>.32 kB     <span class="m">0</span>.42 kB/event    <span class="m">1</span>.68     <span class="m">20788</span>   MuonSpectrometerTrackParticles <span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span> <span class="o">[</span>Muon<span class="o">]</span>
-     <span class="m">20589</span>.57 kB      <span class="m">11065</span>.87 kB     <span class="m">0</span>.53 kB/event    <span class="m">1</span>.86     <span class="m">20788</span>   GSFTrackParticles <span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span> <span class="o">[</span>egamma<span class="o">]</span>
-     <span class="m">38546</span>.04 kB      <span class="m">11397</span>.73 kB     <span class="m">0</span>.55 kB/event    <span class="m">3</span>.38     <span class="m">20788</span>   Photons <span class="o">(</span>DataVector&lt;xAOD::Photon_v1&gt;<span class="o">)</span> <span class="o">[</span>egamma<span class="o">]</span>
-     <span class="m">23701</span>.12 kB      <span class="m">13832</span>.01 kB     <span class="m">0</span>.67 kB/event    <span class="m">1</span>.71     <span class="m">20788</span>   HLT_xAOD__TrackParticleContainer_InDetTrigTrackingxAODCnv_Muon_IDTrig <span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-    <span class="m">453682</span>.19 kB      <span class="m">22308</span>.57 kB     <span class="m">1</span>.07 kB/event   <span class="m">20</span>.34     <span class="m">20788</span>   HLT_xAOD__TrigBphysContainer_EFBMuMuFex <span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-    <span class="m">521885</span>.12 kB      <span class="m">24422</span>.69 kB     <span class="m">1</span>.17 kB/event   <span class="m">21</span>.37     <span class="m">20788</span>   BPHY4RefittedPrimaryVertices <span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span> <span class="o">[</span>*Unknown*<span class="o">]</span>
-     <span class="m">71110</span>.69 kB      <span class="m">28750</span>.34 kB     <span class="m">1</span>.38 kB/event    <span class="m">2</span>.47     <span class="m">20788</span>   ExtrapolatedMuonTrackParticles <span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span> <span class="o">[</span>Muon<span class="o">]</span>
-     <span class="m">72210</span>.54 kB      <span class="m">31226</span>.66 kB     <span class="m">1</span>.50 kB/event    <span class="m">2</span>.31     <span class="m">20788</span>   CombinedMuonTrackParticles <span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span> <span class="o">[</span>Muon<span class="o">]</span>
-     <span class="m">66508</span>.79 kB      <span class="m">35456</span>.61 kB     <span class="m">1</span>.71 kB/event    <span class="m">1</span>.88     <span class="m">20788</span>   egammaClusters <span class="o">(</span>DataVector&lt;xAOD::CaloCluster_v1&gt;<span class="o">)</span> <span class="o">[</span>egamma<span class="o">]</span>
-    <span class="m">142288</span>.23 kB      <span class="m">45957</span>.38 kB     <span class="m">2</span>.21 kB/event    <span class="m">3</span>.10     <span class="m">20788</span>   Muons <span class="o">(</span>DataVector&lt;xAOD::Muon_v1&gt;<span class="o">)</span> <span class="o">[</span>Muon<span class="o">]</span>
-    <span class="m">322969</span>.71 kB      <span class="m">56110</span>.05 kB     <span class="m">2</span>.70 kB/event    <span class="m">5</span>.76     <span class="m">20788</span>   PrimaryVertices <span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span> <span class="o">[</span>InDet<span class="o">]</span>
-     <span class="m">99516</span>.93 kB      <span class="m">59326</span>.76 kB     <span class="m">2</span>.85 kB/event    <span class="m">1</span>.68     <span class="m">20788</span>   BPHY4Quads <span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span> <span class="o">[</span>*Unknown*<span class="o">]</span>
-    <span class="m">110682</span>.30 kB      <span class="m">62286</span>.51 kB     <span class="m">3</span>.00 kB/event    <span class="m">1</span>.78     <span class="m">20788</span>   BPHY4Pairs <span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span> <span class="o">[</span>*Unknown*<span class="o">]</span>
-    <span class="m">421894</span>.21 kB     <span class="m">117419</span>.71 kB     <span class="m">5</span>.65 kB/event    <span class="m">3</span>.59     <span class="m">20788</span>   InDetTrackParticles <span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span> <span class="o">[</span>InDet<span class="o">]</span>
-   <span class="m">1064386</span>.64 kB     <span class="m">292559</span>.83 kB    <span class="m">14</span>.07 kB/event    <span class="m">3</span>.64     <span class="m">20788</span>   TrigNavigation <span class="o">(</span>xAOD::TrigNavigation_v1<span class="o">)</span> <span class="o">[</span>Trig<span class="o">]</span>
-------------------------------------------------------------------------------------------------------------------------   <span class="m">4056446</span>.90 kB     <span class="m">874239</span>.27 kB    <span class="m">42</span>.05 kB/event                     Total
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bash<span class="o">][</span>atlas<span class="w"> </span>AnalysisBase-21.2.62<span class="o">]</span>:data<span class="w"> </span>&gt;<span class="w"> </span>checkxAOD.py<span class="w"> </span>DAOD_BPHY4.999031._000001.pool.root.1
+<span class="o">========================================================================================================================</span><span class="w"> </span>File:<span class="w"> </span>DAOD_BPHY4.999031._000001.pool.root.1
+------------------------------------------------------------------------------------------------------------------------<span class="w">    </span>Memory<span class="w"> </span>size<span class="w">        </span>Disk<span class="w"> </span>Size<span class="w">       </span>Size/Event<span class="w">  </span>Compression<span class="w"> </span>Entries<span class="w">  </span>Name<span class="w"> </span><span class="o">(</span>Type<span class="o">)</span>
+------------------------------------------------------------------------------------------------------------------------<span class="w">       </span><span class="m">333</span>.24<span class="w"> </span>kB<span class="w">         </span><span class="m">50</span>.19<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.00<span class="w"> </span>kB/event<span class="w">    </span><span class="m">6</span>.64<span class="w">     </span><span class="m">20788</span><span class="w">   </span>TrigConfKeys<span class="w"> </span><span class="o">(</span>xAOD::TrigConfKeys_v1<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">      </span><span class="m">2544</span>.13<span class="w"> </span>kB<span class="w">        </span><span class="m">516</span>.87<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.02<span class="w"> </span>kB/event<span class="w">    </span><span class="m">4</span>.92<span class="w">     </span><span class="m">20788</span><span class="w">   </span>GSFConversionVertices<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>egamma<span class="o">]</span>
+<span class="w">      </span><span class="m">4089</span>.23<span class="w"> </span>kB<span class="w">       </span><span class="m">1132</span>.31<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.05<span class="w"> </span>kB/event<span class="w">    </span><span class="m">3</span>.61<span class="w">     </span><span class="m">20788</span><span class="w">   </span>LVL1MuonRoIs<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::MuonRoI_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">      </span><span class="m">6630</span>.11<span class="w"> </span>kB<span class="w">       </span><span class="m">1189</span>.60<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.06<span class="w"> </span>kB/event<span class="w">    </span><span class="m">5</span>.57<span class="w">     </span><span class="m">20788</span><span class="w">   </span>InDetForwardTrackParticles<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>InDet<span class="o">]</span>
+<span class="w">     </span><span class="m">12605</span>.41<span class="w"> </span>kB<span class="w">       </span><span class="m">1757</span>.67<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.08<span class="w"> </span>kB/event<span class="w">    </span><span class="m">7</span>.17<span class="w">     </span><span class="m">20788</span><span class="w">   </span>EventInfo<span class="w"> </span><span class="o">(</span>xAOD::EventInfo_v1<span class="o">)</span><span class="w"> </span><span class="o">[</span>EvtId<span class="o">]</span>
+<span class="w">      </span><span class="m">7545</span>.86<span class="w"> </span>kB<span class="w">       </span><span class="m">2787</span>.27<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.13<span class="w"> </span>kB/event<span class="w">    </span><span class="m">2</span>.71<span class="w">     </span><span class="m">20788</span><span class="w">   </span>HLT_xAOD__MuonContainer_MuonEFInfo_FullScan<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Muon_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">     </span><span class="m">23009</span>.07<span class="w"> </span>kB<span class="w">       </span><span class="m">2875</span>.53<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.14<span class="w"> </span>kB/event<span class="w">    </span><span class="m">8</span>.00<span class="w">     </span><span class="m">20788</span><span class="w">   </span>McEventInfo<span class="w"> </span><span class="o">(</span>PileUpEventInfo_p5<span class="o">)</span><span class="w"> </span><span class="o">[</span>EvtId<span class="o">]</span>
+<span class="w">     </span><span class="m">14812</span>.24<span class="w"> </span>kB<span class="w">       </span><span class="m">3296</span>.27<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.16<span class="w"> </span>kB/event<span class="w">    </span><span class="m">4</span>.49<span class="w">     </span><span class="m">20788</span><span class="w">   </span>HLT_xAOD__TrigBphysContainer_EFTrackMass<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">     </span><span class="m">21498</span>.52<span class="w"> </span>kB<span class="w">       </span><span class="m">4903</span>.93<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.24<span class="w"> </span>kB/event<span class="w">    </span><span class="m">4</span>.38<span class="w">     </span><span class="m">20788</span><span class="w">   </span>HLT_xAOD__MuonContainer_MuonEFInfo<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Muon_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">     </span><span class="m">61415</span>.48<span class="w"> </span>kB<span class="w">       </span><span class="m">4976</span>.95<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.24<span class="w"> </span>kB/event<span class="w">   </span><span class="m">12</span>.34<span class="w">     </span><span class="m">20788</span><span class="w">   </span>HLT_xAOD__TrigBphysContainer_EFBMuMuXFex<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">    </span><span class="m">217772</span>.43<span class="w"> </span>kB<span class="w">       </span><span class="m">5590</span>.42<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.27<span class="w"> </span>kB/event<span class="w">   </span><span class="m">38</span>.95<span class="w">     </span><span class="m">20788</span><span class="w">   </span>xTrigDecision<span class="w"> </span><span class="o">(</span>xAOD::TrigDecision_v1<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">    </span><span class="m">107825</span>.61<span class="w"> </span>kB<span class="w">       </span><span class="m">7299</span>.25<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.35<span class="w"> </span>kB/event<span class="w">   </span><span class="m">14</span>.77<span class="w">     </span><span class="m">20788</span><span class="w">   </span>HLT_xAOD__TrigBphysContainer_EFMultiMuFex<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">     </span><span class="m">26836</span>.23<span class="w"> </span>kB<span class="w">       </span><span class="m">8364</span>.40<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.40<span class="w"> </span>kB/event<span class="w">    </span><span class="m">3</span>.21<span class="w">     </span><span class="m">20788</span><span class="w">   </span>Electrons<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Electron_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>egamma<span class="o">]</span>
+<span class="w">    </span><span class="m">104940</span>.43<span class="w"> </span>kB<span class="w">       </span><span class="m">8684</span>.58<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.42<span class="w"> </span>kB/event<span class="w">   </span><span class="m">12</span>.08<span class="w">     </span><span class="m">20788</span><span class="w">   </span>HLT_xAOD__TrigBphysContainer_L2BMuMuFex<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">     </span><span class="m">14616</span>.80<span class="w"> </span>kB<span class="w">       </span><span class="m">8693</span>.32<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.42<span class="w"> </span>kB/event<span class="w">    </span><span class="m">1</span>.68<span class="w">     </span><span class="m">20788</span><span class="w">   </span>MuonSpectrometerTrackParticles<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Muon<span class="o">]</span>
+<span class="w">     </span><span class="m">20589</span>.57<span class="w"> </span>kB<span class="w">      </span><span class="m">11065</span>.87<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.53<span class="w"> </span>kB/event<span class="w">    </span><span class="m">1</span>.86<span class="w">     </span><span class="m">20788</span><span class="w">   </span>GSFTrackParticles<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>egamma<span class="o">]</span>
+<span class="w">     </span><span class="m">38546</span>.04<span class="w"> </span>kB<span class="w">      </span><span class="m">11397</span>.73<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.55<span class="w"> </span>kB/event<span class="w">    </span><span class="m">3</span>.38<span class="w">     </span><span class="m">20788</span><span class="w">   </span>Photons<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Photon_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>egamma<span class="o">]</span>
+<span class="w">     </span><span class="m">23701</span>.12<span class="w"> </span>kB<span class="w">      </span><span class="m">13832</span>.01<span class="w"> </span>kB<span class="w">     </span><span class="m">0</span>.67<span class="w"> </span>kB/event<span class="w">    </span><span class="m">1</span>.71<span class="w">     </span><span class="m">20788</span><span class="w">   </span>HLT_xAOD__TrackParticleContainer_InDetTrigTrackingxAODCnv_Muon_IDTrig<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">    </span><span class="m">453682</span>.19<span class="w"> </span>kB<span class="w">      </span><span class="m">22308</span>.57<span class="w"> </span>kB<span class="w">     </span><span class="m">1</span>.07<span class="w"> </span>kB/event<span class="w">   </span><span class="m">20</span>.34<span class="w">     </span><span class="m">20788</span><span class="w">   </span>HLT_xAOD__TrigBphysContainer_EFBMuMuFex<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrigBphys_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+<span class="w">    </span><span class="m">521885</span>.12<span class="w"> </span>kB<span class="w">      </span><span class="m">24422</span>.69<span class="w"> </span>kB<span class="w">     </span><span class="m">1</span>.17<span class="w"> </span>kB/event<span class="w">   </span><span class="m">21</span>.37<span class="w">     </span><span class="m">20788</span><span class="w">   </span>BPHY4RefittedPrimaryVertices<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>*Unknown*<span class="o">]</span>
+<span class="w">     </span><span class="m">71110</span>.69<span class="w"> </span>kB<span class="w">      </span><span class="m">28750</span>.34<span class="w"> </span>kB<span class="w">     </span><span class="m">1</span>.38<span class="w"> </span>kB/event<span class="w">    </span><span class="m">2</span>.47<span class="w">     </span><span class="m">20788</span><span class="w">   </span>ExtrapolatedMuonTrackParticles<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Muon<span class="o">]</span>
+<span class="w">     </span><span class="m">72210</span>.54<span class="w"> </span>kB<span class="w">      </span><span class="m">31226</span>.66<span class="w"> </span>kB<span class="w">     </span><span class="m">1</span>.50<span class="w"> </span>kB/event<span class="w">    </span><span class="m">2</span>.31<span class="w">     </span><span class="m">20788</span><span class="w">   </span>CombinedMuonTrackParticles<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Muon<span class="o">]</span>
+<span class="w">     </span><span class="m">66508</span>.79<span class="w"> </span>kB<span class="w">      </span><span class="m">35456</span>.61<span class="w"> </span>kB<span class="w">     </span><span class="m">1</span>.71<span class="w"> </span>kB/event<span class="w">    </span><span class="m">1</span>.88<span class="w">     </span><span class="m">20788</span><span class="w">   </span>egammaClusters<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::CaloCluster_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>egamma<span class="o">]</span>
+<span class="w">    </span><span class="m">142288</span>.23<span class="w"> </span>kB<span class="w">      </span><span class="m">45957</span>.38<span class="w"> </span>kB<span class="w">     </span><span class="m">2</span>.21<span class="w"> </span>kB/event<span class="w">    </span><span class="m">3</span>.10<span class="w">     </span><span class="m">20788</span><span class="w">   </span>Muons<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Muon_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>Muon<span class="o">]</span>
+<span class="w">    </span><span class="m">322969</span>.71<span class="w"> </span>kB<span class="w">      </span><span class="m">56110</span>.05<span class="w"> </span>kB<span class="w">     </span><span class="m">2</span>.70<span class="w"> </span>kB/event<span class="w">    </span><span class="m">5</span>.76<span class="w">     </span><span class="m">20788</span><span class="w">   </span>PrimaryVertices<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>InDet<span class="o">]</span>
+<span class="w">     </span><span class="m">99516</span>.93<span class="w"> </span>kB<span class="w">      </span><span class="m">59326</span>.76<span class="w"> </span>kB<span class="w">     </span><span class="m">2</span>.85<span class="w"> </span>kB/event<span class="w">    </span><span class="m">1</span>.68<span class="w">     </span><span class="m">20788</span><span class="w">   </span>BPHY4Quads<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>*Unknown*<span class="o">]</span>
+<span class="w">    </span><span class="m">110682</span>.30<span class="w"> </span>kB<span class="w">      </span><span class="m">62286</span>.51<span class="w"> </span>kB<span class="w">     </span><span class="m">3</span>.00<span class="w"> </span>kB/event<span class="w">    </span><span class="m">1</span>.78<span class="w">     </span><span class="m">20788</span><span class="w">   </span>BPHY4Pairs<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::Vertex_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>*Unknown*<span class="o">]</span>
+<span class="w">    </span><span class="m">421894</span>.21<span class="w"> </span>kB<span class="w">     </span><span class="m">117419</span>.71<span class="w"> </span>kB<span class="w">     </span><span class="m">5</span>.65<span class="w"> </span>kB/event<span class="w">    </span><span class="m">3</span>.59<span class="w">     </span><span class="m">20788</span><span class="w">   </span>InDetTrackParticles<span class="w"> </span><span class="o">(</span>DataVector&lt;xAOD::TrackParticle_v1&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span>InDet<span class="o">]</span>
+<span class="w">   </span><span class="m">1064386</span>.64<span class="w"> </span>kB<span class="w">     </span><span class="m">292559</span>.83<span class="w"> </span>kB<span class="w">    </span><span class="m">14</span>.07<span class="w"> </span>kB/event<span class="w">    </span><span class="m">3</span>.64<span class="w">     </span><span class="m">20788</span><span class="w">   </span>TrigNavigation<span class="w"> </span><span class="o">(</span>xAOD::TrigNavigation_v1<span class="o">)</span><span class="w"> </span><span class="o">[</span>Trig<span class="o">]</span>
+------------------------------------------------------------------------------------------------------------------------<span class="w">   </span><span class="m">4056446</span>.90<span class="w"> </span>kB<span class="w">     </span><span class="m">874239</span>.27<span class="w"> </span>kB<span class="w">    </span><span class="m">42</span>.05<span class="w"> </span>kB/event<span class="w">                     </span>Total
 </pre></div>
 </div>
 <p>So we know we can access it as a vertex!</p>
@@ -426,9 +493,9 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quad_mass</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">ds</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">Vertices</span><span class="p">(</span><span class="s1">&#39;BPHY4Quads&#39;</span><span class="p">))</span>
     <span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">quads</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;mass&#39;</span><span class="p">:</span> <span class="n">quads</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">auxdataConst</span><span class="p">[</span><span class="n">cpp_float</span><span class="p">](</span><span class="s1">&#39;QUAD_mass&#39;</span><span class="p">)),</span>
-        <span class="s1">&#39;chi2&#39;</span><span class="p">:</span> <span class="n">quads</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">chiSquared</span><span class="p">()),</span>
-        <span class="s1">&#39;charge_code&#39;</span><span class="p">:</span> <span class="n">quads</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">auxdataConst</span><span class="p">[</span><span class="n">cpp_string</span><span class="p">](</span><span class="s1">&#39;ChargeCode&#39;</span><span class="p">)),</span>
+        <span class="s1">&#39;mass&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">auxdataConst</span><span class="p">[</span><span class="n">cpp_float</span><span class="p">](</span><span class="s1">&#39;QUAD_mass&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">quads</span><span class="p">],</span>
+        <span class="s1">&#39;chi2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">chiSquared</span><span class="p">()</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">quads</span><span class="p">],</span>
+        <span class="s1">&#39;charge_code&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">auxdataConst</span><span class="p">[</span><span class="n">cpp_string</span><span class="p">](</span><span class="s1">&#39;ChargeCode&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">quads</span><span class="p">],</span>
     <span class="p">})</span>
     <span class="o">.</span><span class="n">AsAwkwardArray</span><span class="p">()</span>
     <span class="o">.</span><span class="n">value</span><span class="p">()</span>
@@ -436,7 +503,10 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "cde740b077784f2eb19a68e99fabd3da", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "58d9c969d2b84ff49a3a3a577ba71cd3", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "bb79cf3b92514fe495d0e2d2cbe74ea4", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "3b78a1f040cd413791a2f2df0aadf801", "version_major": 2, "version_minor": 0}</script></div>
 </div>
+<p>And a two panel plot showing the difference in mass and fit <span class="math notranslate nohighlight">\(\chi^2\)</span> for the two types of reconstructed vertices:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">[</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">]</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -459,11 +529,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/xaod_objects_4_0.png" src="../_images/xaod_objects_4_0.png" />
+<img alt="../_images/0c18febae3d554cfc2c27a4c7be7a40488d3478eb916c09edbed1c0ea8edf624.png" src="../_images/0c18febae3d554cfc2c27a4c7be7a40488d3478eb916c09edbed1c0ea8edf624.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -477,7 +547,7 @@ const thebe_selector_output = ".output, .cell_output"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters"
         },
         predefinedOutput: true
@@ -485,44 +555,103 @@ const thebe_selector_output = ".output, .cell_output"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="eventinfo.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Event Info</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="eventinfo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Event Info</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../appendix/calibrations.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../appendix/py_help.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Calibrations</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+        <p class="prev-next-title">Using Python Help</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By IRIS-HEP (Gordon Watts)<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-      </div>
-    </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-decorations">Object Decorations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By IRIS-HEP (Gordon Watts)
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
