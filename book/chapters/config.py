@@ -5,6 +5,8 @@ import awkward as ak
 import numpy as np
 import uproot
 
+from servicex_analysis_utils import to_awk
+
 from servicex import deliver, dataset as servicex_dataset
 
 @dataclass
@@ -18,62 +20,6 @@ class sample:
 
     # Codegen
     codegen: str
-
-def to_awk(output_dict, tree_name=None, dask=False):
-    """
-    Load an awkward array from the deliver() output with uproot or uproot.dask.
-
-    Parameters:
-        output_dict (dict): Returned dictionary from deliver()
-                           (keys are sample names, values are lists of file paths or URLs).
-        tree_name (str): Optional. TTree from which to load data. 
-                         If default: automatically scans the TTree name (single TTree files)
-        dask (bool): Optional. Flag to load as dask-awkward array.
-    
-    Returns:
-        dict: keys are sample names and values are awkward arrays or dask-awkward arrays.
-    """
-    awk_arrays = {}
-
-    for sample, paths in output_dict.items():
-        try:
-            if dask:
-                # Use uproot.dask to handle both URLs and local paths
-                awk_arrays[sample] = uproot.dask(paths, library="ak")
-            else:
-                # Load the data using uproot for both URLs and local paths
-                tmp_arrays = []
-
-                if tree_name is None:
-                    # Open first file of sample
-                    with uproot.open(paths[0]) as file: 
-                        keys = file.keys()
-                    if len(keys) == 1:
-                        tree_name = keys[0].rstrip(";1")  # Remove suffix
-                    else:
-                        raise ValueError(f"Multiple trees found. Specify tree_name explicitly. Available trees: {keys}")
-                
-                for path in paths:
-                    with uproot.open(path) as file:
-                        # Load the tree as an awkward array
-                        tmp_arrays.append(file[tree_name].arrays(library="ak"))
-                
-                # Merge the tmp_arrays into one awkward array
-                awk_arrays[sample] = ak.concatenate(tmp_arrays, axis=0)
-
-        except Exception as e:
-            if str(e).startswith("http"):
-                # Non pointing URL exception 
-                print(f"Error loading sample {sample}: This URL could not be accessed {e}")
-            else:
-                # Other exceptions
-                print(f"Error loading sample {sample}. Details: {e}")
-                
-            # Mark the sample as failed
-            awk_arrays[sample] = None 
-
-    return awk_arrays
-
 
 _samples = {
     "sx_f": sample(
@@ -143,7 +89,7 @@ def get_data(query, s: sample):
     assert files is not None, "No files returned from deliver! Internal error"
 
     # Get the data into an akward array
-    data = to_awk(files, "atlas_xaod_tree")
+    data = to_awk(files)
 
     # For these examples we are only using one sample, so we return just the array, not the dictionary.
     return data[s.name]

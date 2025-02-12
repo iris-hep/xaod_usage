@@ -28,7 +28,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/gordonwatts/xaod_usage  # Online location of your book's source code
+  url: https://github.com/iris-hep/xaod_usage  # Online location of your book's source code
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
