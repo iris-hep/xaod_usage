@@ -4,3 +4,4 @@ hist[plot]
 particle
 func-adl-servicex-xaodr21
 func-adl-servicex[local]
+servicex_analysis_utils
