@@ -1,5 +1,7 @@
 # xaod_usage
 
+ This information has been rolled into the official [func_adl_documentation](https://tryservicex.org/funcadl/).
+
  Book describing how to use the xAOD ATLAS ServiceX Backend.
 
  Under development - not at all polished!
